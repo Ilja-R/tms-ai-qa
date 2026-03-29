@@ -1370,7 +1370,7 @@ Provide the entire comparison strictly in TABLE FORMAT. Reason internally and do
 
 #### Примеры вывода
 
-##### Пример 1. detail_level: brief
+##### Пример анализа технологий
 
 Входные данные:
 ```
