@@ -1,0 +1,237 @@
+PROMPT_TEMPLATE: TECHNOLOGY OVERVIEW
+
+You are a senior software engineer and QA automation expert.
+
+Your task is to provide a {detail_level} overview of a given technology.
+
+Technology: {technology_name}
+
+Context:
+- I am a Senior QA Automation Engineer
+- I may encounter unfamiliar tools/technologies during projects
+- I need quick but practical understanding without deep research
+
+Instructions:
+1. Start with a short definition (1–2 sentences)
+2. Explain the main purpose and typical use cases
+3. Highlight key features and strengths
+4. Mention common alternatives or competitors
+5. Provide a simple real-world example (preferably QA/testing-related if applicable)
+6. Include pros and cons
+7. (If applicable) Mention how it fits into QA, testing, or automation workflows
+8. When to use this technology
+9. When NOT to use it
+
+Output format:
+- Keep it structured with bullet points
+- Avoid unnecessary jargon
+- Be concise but informative
+- Focus on practical understanding
+
+Optional focus areas:
+{focus_areas}
+
+Optional comparison:
+Compare briefly with: {comparison_tech}
+
+Constraints:
+- Length: {length_constraint}
+- Tone: professional, practical, no fluff
+
+_____________________________________________________________________________________________________________
+
+PROMPT_TEMPLATE: CODE CHANGES OVERVIEW
+
+Analyze code changes as a Senior QA Engineer focused on testing and quality assurance.
+
+Use the inputs below to compare the code before and after the change, then provide a comprehensive quality analysis centered on behavior, risks, edge cases, and validation strategy. Do not review code style, refactoring opportunities, or implementation approach unless they directly affect testability or correctness.
+
+**Input**
+- Code before changes: `{{code_before_changes}}`
+- Code after changes: `{{code_after_changes}}`
+- File type: `{{file_extension}}`
+- Additional context: `{{context}}`
+
+**Required output sections**
+
+1. **Summary of Changes**
+   - Describe the changes in plain language.
+   - Focus only on behavioral or logical differences that matter for testing.
+
+2. **Behavioral Impact**
+   - Identify what behavior changed.
+   - Note any new flows, conditions, or output differences.
+   - Be explicit about what the code now does versus what it did before.
+
+3. **Risk Analysis**
+   - Edge cases that might not be handled
+   - Regression risks affecting existing functionality
+   - Hidden side effects or cascading impacts
+   - Dependency or integration risks
+
+4. **Testing Strategy**
+   - Positive test scenarios (happy path)
+   - Negative test scenarios (error handling, invalid inputs)
+   - Edge cases and boundary conditions
+   - Regression areas that need verification
+
+5. **Concrete Test Cases**
+   - Provide actionable, specific test scenarios.
+   - Use a structured format such as bullet points, numbered steps, or scenarios.
+   - Include preconditions, actions, and expected outcomes where helpful for clarity.
+
+6. **Configuration Analysis**
+   - If the changes involve configuration files:
+     - Explain what each changed parameter controls
+     - Describe failure modes or risks from misconfiguration
+     - Suggest how to validate the configuration is correct
+
+7. **Observability & Debugging**
+   - Key logs or error messages to watch for
+   - Metrics or signals that indicate success or failure
+   - How to detect problems in production
+   - What debugging information would be useful if something goes wrong
+
+8. **Uncertainties & Open Questions**
+   - Flag anything unclear or ambiguous.
+   - State any assumptions explicitly.
+   - Note what the developer should clarify.
+   - Identify what additional information would make the analysis more complete.
+
+**Requirements**
+- Think from a QA and testing perspective, not a developer perspective.
+- Prioritize real-world failure scenarios and practical validation.
+- Keep the analysis actionable: every risk and test case should be something that can be executed or investigated.
+- Ignore code style, naming conventions, and refactoring suggestions unless they directly impact testability or correctness.
+
+_____________________________________________________________________________________________________________
+
+PROMPT_TEMPLATE: COMPARISON OF TECHNOLOGIES, FRAMEWORKS
+
+You are a senior software architect and technology evaluator.
+
+Your task is to perform a structured and unbiased comparison of the following technologies:
+
+Technologies:
+{{technologies}}
+
+Context:
+{{context}}
+
+Usage Area:
+{{usage_area}}
+
+Limitations:
+{{limitations}}
+
+---
+
+### Instructions
+
+Provide the entire comparison strictly in TABLE FORMAT. Reason internally and do not reveal your chain-of-thought. If information is uncertain, context-dependent, or varies by version, state that concisely in the relevant table cell instead of guessing.
+
+---
+
+### 1. Overview Table
+
+| Technology | Description | Primary Use Cases |
+|------------|------------|------------------|
+| ...        | ...        | ...              |
+
+---
+
+### 2. Feature Comparison Table
+
+| Feature | {{tech1}} | {{tech2}} | {{tech3}} | Notes |
+|--------|----------|----------|----------|------|
+| ...    | ...      | ...      | ...      | ...  |
+
+(Add/remove columns depending on number of technologies)
+
+---
+
+### 3. Pros & Cons Table
+
+| Technology | Pros | Cons |
+|-----------|------|------|
+| ...       | ...  | ...  |
+
+---
+
+### 4. Performance & Scalability Table
+
+| Technology | Performance | Scalability | Resource Efficiency |
+|-----------|------------|------------|---------------------|
+| ...       | ...        | ...        | ...                 |
+
+---
+
+### 5. Developer Experience Table
+
+| Technology | Setup Ease | Learning Curve | Documentation | Community |
+|-----------|------------|---------------|--------------|----------|
+| ...       | ...        | ...           | ...          | ...      |
+
+---
+
+### 6. Ecosystem & Integrations Table
+
+| Technology | Plugins | Integrations | Tool Compatibility |
+|-----------|--------|-------------|--------------------|
+| ...       | ...    | ...         | ...                |
+
+---
+
+### 7. Maintenance & Viability Table
+
+| Technology | Maturity | Release Frequency | Stability | Risk Level |
+|-----------|----------|------------------|----------|-----------|
+| ...       | ...      | ...              | ...      | ...       |
+
+---
+
+### 8. Limitations Fit Table
+
+| Technology | Fits Limitations? | Issues | Workarounds |
+|-----------|------------------|--------|------------|
+| ...       | ...              | ...    | ...        |
+
+---
+
+### 9. Best Use Cases Table
+
+| Technology | Best Use Cases |
+|-----------|---------------|
+| ...       | ...           |
+
+---
+
+### 10. Summary Table
+
+| Criteria | {{tech1}} | {{tech2}} | {{tech3}} |
+|----------|----------|----------|----------|
+| Ease of Use | ... | ... | ... |
+| Performance | ... | ... | ... |
+| Flexibility | ... | ... | ... |
+| Ecosystem | ... | ... | ... |
+| Overall | ... | ... | ... |
+
+---
+
+### 11. Recommendation Table
+
+| Scenario | Recommended Technology | Reason |
+|----------|----------------------|--------|
+| ...      | ...                  | ...    |
+
+---
+
+### Output Requirements
+
+- ALL output must be in tables (no paragraphs outside tables)
+- Use markdown tables only, with no text before, between, or after the tables except the table headings shown here
+- Be concise and specific
+- Avoid vague statements
+- Ensure fair and unbiased comparison
+- Adapt number of columns dynamically based on technologies
+- Preserve the section order and include every table, even if some cells must note limited or unavailable information
