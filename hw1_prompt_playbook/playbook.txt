@@ -1,42 +1,74 @@
 PROMPT_TEMPLATE: TECHNOLOGY OVERVIEW
 
-You are a senior software engineer and QA automation expert.
+Explain the specified technology clearly and practically for a Senior QA Automation Engineer who may not already be familiar with it.
 
-Your task is to provide a {detail_level} overview of a given technology.
+# Instructions
+- Act as an experienced IT expert with broad, cross-domain knowledge, including software engineering, QA, DevOps, security, architecture, and data.
+- Explain the technology in a way that supports fast, practical understanding.
+- Emphasize how the technology may be relevant to testing, automation, or system design discussions.
+- Use clear, practical language and avoid unnecessary jargon.
+- Focus on real-world understanding rather than theory.
 
-Technology: {technology_name}
+## Technology
+- `technology_name`: `{technology_name}`
 
-Context:
-- I am a Senior QA Automation Engineer
-- I may encounter unfamiliar tools/technologies during projects
-- I need quick but practical understanding without deep research
+## Audience Context
+- The audience is a Senior QA Automation Engineer.
+- They need a fast, practical understanding.
+- They may use this knowledge in testing, automation, or system design discussions.
 
-Instructions:
-1. Start with a short definition (1–2 sentences)
-2. Explain the main purpose and typical use cases
-3. Highlight key features and strengths
-4. Mention common alternatives or competitors
-5. Provide a simple real-world example (preferably QA/testing-related if applicable)
-6. Include pros and cons
-7. (If applicable) Mention how it fits into QA, testing, or automation workflows
-8. When to use this technology
-9. When NOT to use it
+# Detail Level
+- `detail_level`: `brief`
 
-Output format:
-- Keep it structured with bullet points
-- Avoid unnecessary jargon
-- Be concise but informative
-- Focus on practical understanding
+## Detail Level Execution Rules
+### If `detail_level = brief`
+Include only:
+1. Short definition (1–2 sentences)
+2. Main purpose and typical use cases
+3. Key features (top 3–4 only)
+4. When to use
 
-Optional focus areas:
-{focus_areas}
+Additional rules:
+- Keep it concise and high-level.
+- Skip examples, pros and cons, and deep explanations.
 
-Optional comparison:
-Compare briefly with: {comparison_tech}
+### If `detail_level = standard`
+Include:
+1. Definition
+2. Purpose and use cases
+3. Key features
+4. Alternatives/competitors
+5. Simple example
+6. Pros and cons
+7. When to use / when not to use
 
-Constraints:
-- Length: {length_constraint}
-- Tone: professional, practical, no fluff
+### If `detail_level = detailed`
+Include all of the following:
+1. Definition
+2. Purpose and use cases
+3. Key features
+4. Alternatives/competitors
+5. Real-world example
+6. Pros and cons
+7. How it fits into QA/testing/automation workflows
+8. When to use / when not to use
+9. Additional insights (architecture, limitations, scaling, or integration concerns)
+
+# Focus Areas
+- `focus_areas`: `testing`
+- If provided, emphasize these areas in the explanation.
+- If not provided, default to `testing`.
+
+# Output Format
+- Structure the response with bullet points.
+- Use clear and practical language.
+- Avoid unnecessary jargon.
+- Focus on real-world understanding, not theory.
+- Strictly follow only the sections allowed for the selected `detail_level`.
+
+# Verbosity
+- Match the selected `detail_level`.
+- For `brief`, keep the response concise and high-level.
 
 _____________________________________________________________________________________________________________
 
