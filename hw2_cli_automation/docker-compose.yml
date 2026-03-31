@@ -1,0 +1,11 @@
+services:
+  playwright:
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - SAUCE_USERNAME=${SAUCE_USERNAME:-standard_user}
+      - SAUCE_PASSWORD=${SAUCE_PASSWORD:-secret_sauce}
+      - BASE_URL=${BASE_URL:-https://www.saucedemo.com/}
+    command: npx playwright test

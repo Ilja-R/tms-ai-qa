@@ -1,0 +1,27 @@
+{
+  "name": "hw2_cli_automation",
+  "version": "1.0.0",
+  "description": "This project is for homework 2, focusing on CLI automation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:report": "npm run allure:generate && npm run allure:open",
+    "docker:build": "docker-compose build",
+    "docker:test": "docker-compose up playwright"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0",
+    "allure-commandline": "^2.38.1",
+    "allure-playwright": "^3.6.0",
+    "dotenv": "^17.3.1"
+  }
+}

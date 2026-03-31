@@ -1,0 +1,255 @@
+PROMPT:
+
+Act as a Senior QA Automation Engineer with strong expertise in Playwright, TypeScript, and test architecture.
+
+I already have a Playwright project initialized using:
+npm init playwright@latest
+
+Your task is to design and implement a complete, production-quality Playwright test framework for the application:
+https://www.saucedemo.com/
+
+--------------------------------------------------
+MAIN GOAL
+--------------------------------------------------
+Build a scalable Playwright test project using:
+- TypeScript
+- Page Object Model (POM)
+- Layered architecture (tests → steps → POM)
+- Custom fixtures
+- Allure reporting
+- Docker support
+
+Follow best practices: OOP, clean architecture, Playwright recommendations, and TypeScript coding guidelines.
+
+--------------------------------------------------
+REQUIRED FLOWS & TEST COVERAGE
+--------------------------------------------------
+
+1. LOGIN FLOW
+   - At least 5 tests
+   - Include:
+     - Valid login (happy path)
+     - Invalid username
+     - Invalid password
+     - Locked user
+     - Empty credentials validation
+
+2. SHOPPING CART FLOW
+   - At least 5 tests
+   - Include:
+     - Add single item
+     - Add multiple items
+     - Remove item
+     - Verify cart badge/count
+     - Verify cart content correctness
+
+3. CHECKOUT FLOW
+   - At least 5 tests
+   - Include:
+     - Full end-to-end checkout
+     - Cancel checkout (at different stages)
+     - Missing information validation
+     - Verify total price calculation
+     - Successful order confirmation
+
+If you identify any bugs on the website:
+- Add a test for it
+- Mark it with comment:
+  // TODO: Failing test
+
+--------------------------------------------------
+ARCHITECTURE REQUIREMENTS
+--------------------------------------------------
+
+Use a strict 3-layer architecture:
+
+1) POM (Page Object Model)
+   - Only UI interactions
+   - No business logic
+   - Example:
+     - fillUsername()
+     - clickLoginButton()
+
+2) STEPS (Flow layer)
+   - Contains business logic
+   - Combines POM methods
+   - Responsible for logging steps
+   - Example:
+     - login(username, password)
+     - addItemToCart(itemName)
+   - All logging must be implemented here
+
+3) TESTS
+   - Use steps only
+   - No direct POM usage
+   - Clean and readable test cases
+
+--------------------------------------------------
+FLOW DEPENDENCY HANDLING (CRITICAL)
+--------------------------------------------------
+
+Some flows depend on others (e.g., Shopping Cart and Checkout require a logged-in user).
+
+You MUST implement a scalable and professional solution using:
+
+storageState (PRIMARY approach)
+- Implement global setup that logs in once
+- Save authenticated state to a file (e.g., storageState.json)
+- Reuse it across tests via Playwright config
+- Tests for authenticated flows MUST start already logged in
+
+Custom Fixtures (MANDATORY)
+- Wrap flows using custom fixtures (e.g., loginFlow, cartFlow, checkoutFlow)
+- Fixtures should inject step classes
+- Fixtures must be the main entry point for tests
+
+beforeEach (LIMITED USAGE)
+- Use only for test-specific setup (e.g., navigation, cleanup)
+- MUST NOT be used for login
+
+--------------------------------------------------
+ANTI-PATTERNS (MUST BE AVOIDED)
+--------------------------------------------------
+
+- Do NOT login via UI in every test
+- Do NOT duplicate login logic across tests
+- Do NOT hide login inside unrelated steps (e.g., cart steps calling login)
+- Do NOT mix POM with business logic
+
+--------------------------------------------------
+FIXTURES
+--------------------------------------------------
+
+- Do NOT use default Playwright test directly
+- Extend base test in fixtures.ts
+- Create custom fixtures (example: loginFlow, cartFlow, checkoutFlow)
+- Use meaningful naming
+
+--------------------------------------------------
+CODING STANDARDS
+--------------------------------------------------
+
+- Use TypeScript best practices
+- Apply OOP principles
+- Add proper method-level comments (TS doc style)
+- Keep code clean, readable, and maintainable
+
+--------------------------------------------------
+REPORTING
+--------------------------------------------------
+
+- Integrate Allure Report
+- Ensure:
+  - Steps are visible in report
+  - Test structure is clear
+- Provide commands to generate and open report
+
+--------------------------------------------------
+CONFIGURATION
+--------------------------------------------------
+
+- Clean playwright.config.ts
+- Keep only necessary configuration
+- Define:
+  - Single project: "saucedemo"
+  - baseURL
+  - storageState usage
+  - globalSetup
+
+--------------------------------------------------
+README REQUIREMENTS
+--------------------------------------------------
+
+Create a professional README.md including:
+
+- Project description
+- Application under test
+- Tech stack
+- Project structure explanation
+- Explanation of layered architecture (tests / steps / POM)
+- Authentication approach (storageState)
+- How to install dependencies
+- How to run tests
+- How to run Allure report
+- How to run via Docker
+
+--------------------------------------------------
+DOCKER SUPPORT
+--------------------------------------------------
+
+- Add Dockerfile
+- Add docker-compose.yml (if needed)
+- Ensure project can be executed inside container
+- Include instructions in README
+
+--------------------------------------------------
+GENERAL REQUIREMENTS
+--------------------------------------------------
+
+- Follow Playwright best practices
+- Use async/await properly
+- Avoid code duplication
+- Keep tests deterministic
+- Use meaningful naming conventions
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+If any requirement is unclear or missing details:
+ASK QUESTIONS before implementing.
+
+--------------------------------------------------
+EXPECTED OUTPUT
+--------------------------------------------------
+
+Provide:
+- Full project structure
+- All necessary files and code
+- Configurations
+- README
+- Docker setup
+
+Make the solution as professional and production-ready as possible.
+
+--------------------------------------------------
+
+AFTER PROMPT EXTRA CONTEXT:
+
+Add generating video on failure for allure report. For each of three test flows, add extra test which is failing on purpose to demonstrate this functionality. Mark them as test.skip.
+
+--------------------------------------------------
+
+ON TRYING TO RUN DOCKER CONTAINER GOT AN ERROR, TO FIX:
+
+Running docker container gave error please fix
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+WARNING: Image for service playwright was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+Creating hw2_cli_automation_playwright_1 ... done
+Attaching to hw2_cli_automation_playwright_1
+playwright_1  | [dotenv@17.3.1] injecting env (0) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+playwright_1  | [dotenv@17.3.1] injecting env (0) from .env -- tip: ⚡️ secrets for agents: https://dotenvx.com/as2
+playwright_1  | 
+playwright_1  | Error: browserType.launch: Executable doesn't exist at /ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell
+playwright_1  | ╔══════════════════════════════════════════════════════════════════════╗
+playwright_1  | ║ Looks like Playwright Test or Playwright was just updated to 1.58.2. ║
+playwright_1  | ║ Please update docker image as well.                                  ║
+playwright_1  | ║ -  current: mcr.microsoft.com/playwright:v1.50.1-noble               ║
+playwright_1  | ║ - required: mcr.microsoft.com/playwright:v1.58.2-noble               ║
+playwright_1  | ║                                                                      ║
+playwright_1  | ║ <3 Playwright Team                                                   ║
+playwright_1  | ╚══════════════════════════════════════════════════════════════════════╝
+playwright_1  |
+playwright_1  |    at ../src/utils/global-setup.ts:10
+playwright_1  |
+playwright_1  |    8 | async function globalSetup(config: FullConfig) {
+playwright_1  |    9 |   const { storageState } = config.projects[0].use;
+playwright_1  | > 10 |   const browser = await chromium.launch();
+playwright_1  |      |                                  ^
+playwright_1  |   11 |   const page = await browser.newPage();
+playwright_1  |   12 |   const loginPage = new LoginPage(page);
+playwright_1  |   13 |
+playwright_1  |     at globalSetup (/app/src/utils/global-setup.ts:10:34)
+playwright_1  |
+playwright_1  |
+hw2_cli_automation_playwright_1 exited with code 1
