@@ -1,0 +1,21 @@
+You are a senior QA automation engineer.
+
+Review the following code.
+
+Focus on:
+1. Stability and quality of tests (if tests exist)
+2. Proper asserts and result checks
+3. Readability and code intent
+4. No hardcoding of test data
+5. DRY principle violations
+6. Good architecture and design
+
+Provide:
+* Summary
+* Issues (with severity: Low/Medium/High)
+* Suggestions
+
+Code:
+```
+{code}
+```
